@@ -21,17 +21,20 @@ let funcall = getDriver()
 funcall("Rahul")
 
 
+
 // The above function can be written as follows
 /*
 Typealias simplifies complex function declarations
-
-func getDriverEx () -> ((String) -> Void) {
+ 
+ func getDriverEx () -> ((String) -> Void) {
     func driver (name: String) -> Void {
         print("\(name) is your driver")
         return //"\(name) is your driver"
     }
     return driver
-}
+ }
+ let funcall1 = getDriverEx()
+ funcall1("RahulEx")
 */
 
 // Now let us take a look at a more complex function declaration.
@@ -42,7 +45,7 @@ func getDriverEx () -> ((String) -> Void) {
   So the trick is as follows (this is where I learnt it https://www.eskimo.com/~scs/cclass/int/sx10c.html one of my favorites in C programming)
  
   We need to start defining aliases for every function mentioned there but in the reverse order! is that it?
-  Yes of course!! (let us see if works)
+  Yes of course!! (let us see if it works)
 */
 
 typealias func4 = (Int) -> Int
@@ -77,7 +80,7 @@ let closure3 : func3 = { (name:String) -> func4 in
 let closure2 : func2 = { (closure:func3) -> Void in
     let oneMoreClosure = closure("Bharath")
     print("inside closure 2 : \(oneMoreClosure(2))")
-    return
+    return ()
 }
 
 closure2(closure3)
@@ -100,7 +103,6 @@ closure2(closure3)
  
  let us not try to decipher everything here we are interested in the isOrderedBefore parameter.
  So the 2nd parameter is function pointer which takes two elements of the array and returns a Bool so we can replace it with a closure
-
 */
 
 
@@ -115,7 +117,6 @@ print(numbers.sort(>))
 /* 
  So here the sort closure we wrote has been replaced by > this works for datatypes which conforms to Comparable Protocol.
  so it is used by all these types mentioned here https://developer.apple.com/reference/swift/comparable#relationships
- 
 */
 
 var team = ["Sowmya", "Jithin", "Anumpama","Brahma", "Arjun"]
@@ -127,9 +128,10 @@ print (team.sort(sortString))
 print (team.sort(<))
 // Both of the above do the samething just empahasizing the statement I made about Comparable protocol.
 
-
 /* 
  So that is it.
- The goal of this exercise was to simplify closures and its understanding, thro' samples
- Trying to take the understanding from Terse to utterly Trivial.
+ The goal of this exercise was to simplify closures and its understanding, thro' samples.
+
 */
+
+
